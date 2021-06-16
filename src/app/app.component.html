@@ -1,0 +1,173 @@
+
+
+<ul class="nav grey lighten-4 py-4">
+  <li class="nav-item">
+    <a class="nav-link disabled" href="#!">Organización de Lenguajes y 
+      Compiladores 2</a>
+</li>
+
+<li class="nav-item dropdown" dropdown  >
+  <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light" mdbWavesEffect>
+    Funcionalidades<span class="caret"></span></a>
+  <div *dropdownMenu class="dropdown-menu dropdown dropdown-primary" role="menu">
+    <a class="dropdown-item waves-light" mdbWavesEffect href="#">Crear archivos</a>
+    <a class="dropdown-item waves-light" mdbWavesEffect href="#">Abrir archivos</a>
+    <a class="dropdown-item waves-light" mdbWavesEffect href="#">Guardar el archivo</a>
+    <div class="divider dropdown-divider"></div>
+    <a class="dropdown-item waves-light" mdbWavesEffect href="#">Eliminar pestaña</a>
+  </div>
+</li>
+
+<li class="nav-item dropdown" dropdown  >
+  <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light" mdbWavesEffect>
+    Reporte de Errores<span class="caret"></span></a>
+  <div *dropdownMenu class="dropdown-menu dropdown dropdown-primary" role="menu">
+    <a class="dropdown-item waves-light" mdbWavesEffect href="#">Errores léxico</a>
+    <a class="dropdown-item waves-light" mdbWavesEffect href="#">Errores sintáctico</a>
+    <a class="dropdown-item waves-light" (click)="openPage('TablaSim',2)"   mdbWavesEffect href="#">Errores el semántico</a>
+    </div>
+</li>
+
+  <li class="nav-item">
+    <button mdbBtn (click)="ejecutar()" type="button" color="success" rounded="true" outline="true" mdbWavesEffect>Ejecutar</button>
+  </li>
+  <li class="nav-item">
+  <button mdbBtn (click)="recorrer()" type="button" color="info" rounded="true" outline="true" mdbWavesEffect>Generar Árbol AST</button>
+</li>
+<li class="nav-item">
+  <button mdbBtn (click)="imprimirTabla()" type="button" color="info" rounded="true" outline="true" mdbWavesEffect>Reporte Gramatical</button>
+</li>
+<li class="nav-item">
+<button mdbBtn   (click)="openPage('TablaSim',1)"  type="button" color="default" rounded="true" outline="true" mdbWavesEffect>Tabla de Símbolos</button>
+</li>
+</ul>
+<br>
+<div class="container-fluid">
+<mdb-card>
+  
+  <mdb-card-body>
+    <mdb-card-title>
+      <h5>XPAHT</h5>
+    </mdb-card-title>
+    <div class="col">
+      <ngx-codemirror
+      [(ngModel)]="entradaxpath"
+      [options]="{
+      lineNumbers: true,
+      theme: 'material',
+      mode: 'markdown'
+      }"
+    ></ngx-codemirror>
+    </div>
+  </mdb-card-body>
+</mdb-card>
+<br>
+</div>
+<div class="container-fluid">
+<div class="row">
+  <div class="col-sm-6 mb-3 mb-md-0">
+    <mdb-card>
+      <mdb-card-body>
+        <mdb-card-title>
+          <h5>XML</h5>
+        </mdb-card-title>
+        <div class="col">
+          <ngx-codemirror
+          [(ngModel)]="entradaxml"
+          [options]="{
+          lineNumbers: true,
+          theme: 'material',
+          mode: 'markdown'
+          }"
+        ></ngx-codemirror>
+        </div>
+      </mdb-card-body>
+    </mdb-card>
+  </div>
+  <div class="col-sm-6">
+    <mdb-card>
+      <mdb-card-body>
+        <mdb-card-title>
+          <h5>Consola</h5>
+        </mdb-card-title>
+        <div class="col">
+          <ngx-codemirror
+          [(ngModel)]="consola"
+          [options]="{
+          lineNumbers: true,
+          theme: 'material',
+          mode: 'markdown'
+          }"
+        ></ngx-codemirror>
+        </div>
+      </mdb-card-body>
+    </mdb-card>
+  </div>
+</div>
+
+<br>
+  <div id="TablaSim" class="tabcontent" style="background-color: #1b1d1c;">
+    <table mdbTable id= "tablasimbols" style="width:100%" bordered="true">
+    
+    </table>
+  </div>
+</div>
+
+<br>
+  <div id="ast" class="tabcontent" style="background-color: #1b1d1c;">
+    <div class="overflow-auto" id="graph" style="text-align: center;"></div>
+  </div>
+
+ 
+
+  <div class="container-fluid">
+    <mdb-card>
+      
+      <mdb-card-body>
+        <mdb-card-title>
+          <h5>Arbol</h5>
+        </mdb-card-title>
+        <div id="app"></div>
+      </mdb-card-body>
+    </mdb-card>
+    <br>
+    </div>
+        
+    <mdb-card>
+      <mdb-card-body>
+        <mdb-card-title>
+          <h5>REPORTE GRAMATICAL</h5>
+        </mdb-card-title>
+        <div class="row">
+          <div class="col-sm-6 mb-3 mb-md-0">
+            <mdb-card-title>
+              <h5>XML</h5>
+            </mdb-card-title>
+            <ngx-codemirror
+            [(ngModel)]="reporteGramatical"
+            [options]="{
+            lineNumbers: true,
+            theme: 'material',
+            mode: 'markdown'
+            }"
+          ></ngx-codemirror>
+          </div>
+          <div class="col-sm-6">
+            <mdb-card-title>
+              <h5>XPATH</h5>
+            </mdb-card-title>
+            <ngx-codemirror
+            [(ngModel)]="xpathRG"
+            [options]="{
+            lineNumbers: true,
+            theme: 'material',
+            mode: 'markdown'
+            }"
+          ></ngx-codemirror>
+          </div>
+        </div>
+      </mdb-card-body>
+    </mdb-card>
+
+    
+<script type="text/javascript"></script>
