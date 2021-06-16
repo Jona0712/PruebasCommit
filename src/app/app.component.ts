@@ -61,14 +61,25 @@ export class AppComponent {
   }
 
   ejecutar():void {
-   
-    
+    let ana =new Analizador.Analizador();
+    this.consola="";
+
+    if(this.entradaxml !=""){
+      let ejecutar =ana.ejecutar(this.entradaxml,this.entradaxpath);
+      this.consola=ejecutar.consola;
+      this.htmlts=ejecutar.ts;
+     /* this.htmlerrores = ejecutar.errores;*/
+    }
   }
+
+    
   imprimirTabla() {
     
-    
-    
-      
+    let ana =new Analizador.Analizador();
+    if(this.entradaxml != ""){
+      let ast = ReXML.parse(this.entradaxml);
+      this.reporteGramatical = ast;
+    }
   }
 
   openPage(pageName,valor) {
